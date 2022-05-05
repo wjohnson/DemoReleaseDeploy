@@ -49,7 +49,7 @@ jobs:
         echo $GITHUB_REF
     - name: Create Release
       uses: ncipollo/release-action@v1
-      if: github.ref_type == 'tag' && github.event.action == 'created'
+      if: github.ref_type == 'tag'
       with:
         artifacts: "./dist/*.egg"
         bodyFile: "./notes/body.md"
