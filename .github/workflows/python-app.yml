@@ -5,12 +5,6 @@ name: Python application
 
 on:
   create
-  push:
-    branches:
-      - master
-      - release/**
-  pull_request:
-    branches: [ master ]
 
 permissions:
   contents: read
