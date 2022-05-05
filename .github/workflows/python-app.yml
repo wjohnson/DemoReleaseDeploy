@@ -53,5 +53,5 @@ jobs:
       with:
         artifacts: "./dist/*.egg"
         bodyFile: "./notes/body.md"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAT_FOR_RELEASE }}
       
