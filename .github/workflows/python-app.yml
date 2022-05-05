@@ -4,10 +4,7 @@
 name: Python application
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  create
 
 permissions:
   contents: read
@@ -44,4 +41,9 @@ jobs:
       with:
         name: my-artifact
         path: ./dist/*.egg
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
       
