@@ -39,7 +39,7 @@ jobs:
         pytest
     - name: Build
       run: |
-        python -m setup.py bdist_egg
+        python setup.py bdist_egg
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
