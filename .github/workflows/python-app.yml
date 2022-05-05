@@ -5,6 +5,12 @@ name: Python application
 
 on:
   create
+  push:
+    branches:
+      - master
+      - release/**
+  pull_request:
+    branches: [ master ]
 
 permissions:
   contents: read
@@ -41,9 +47,11 @@ jobs:
       with:
         name: my-artifact
         path: ./dist/*.egg
-    - uses: ncipollo/release-action@v1
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      if: github.event_name == 'release' && github.event.action == 'created'
       with:
-        artifacts: "release.tar.gz,foo/*.txt"
-        bodyFile: "body.md"
+        artifacts: "./dist/*.egg"
+        bodyFile: "./notes/body.md"
         token: ${{ secrets.GITHUB_TOKEN }}
       
