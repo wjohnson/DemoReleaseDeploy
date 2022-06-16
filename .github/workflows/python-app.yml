@@ -50,7 +50,7 @@ jobs:
 
   runIntegrationTests:
     name: Test on Integration Tests
-    if: github.event_name == 'pull_request'
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     needs: [build]
     runs-on: ubuntu-latest
     environment: 
@@ -62,7 +62,7 @@ jobs:
 
   createRelease:
     name: Create Release
-    if: github.event_name == 'pull_request'
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     needs: [runIntegrationTests]
     runs-on: ubuntu-latest
     environment: 
