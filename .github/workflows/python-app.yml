@@ -52,7 +52,6 @@ jobs:
 
   runIntegrationTests:
     name: Test on Integration Tests
-    # if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     needs: [build]
     runs-on: ubuntu-latest
     environment: 
@@ -75,11 +74,18 @@ jobs:
       run: |
         echo "I'm creating a release"
         echo "This is something!"
+    - name: Download Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: my-artifact
+        path: ~/download
+    - run: |
+        ls ~/download
     - name: Create Release
       uses: ncipollo/release-action@v1
       if: github.ref_type == 'tag'
       with:
-        artifacts: "./dist/*.egg"
+        artifacts: ~/download/my-artifact
         bodyFile: "./notes/body.md"
         token: ${{ secrets.PAT_FOR_RELEASE }}
       
