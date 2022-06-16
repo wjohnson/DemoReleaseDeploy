@@ -4,8 +4,8 @@
 name: Python application
 
 on:
-  create
-  push
+  create:
+  push:
 
 permissions:
   contents: read
