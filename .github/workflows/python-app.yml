@@ -5,7 +5,7 @@ name: Python application
 
 on:
   create:
-  push:
+  pull_request:
 
 permissions:
   contents: read
