@@ -85,7 +85,7 @@ jobs:
       uses: ncipollo/release-action@v1
       if: github.ref_type == 'tag'
       with:
-        artifacts: ~/download/my-artifact
+        artifacts: ~/download
         bodyFile: "./notes/body.md"
         token: ${{ secrets.PAT_FOR_RELEASE }}
       
