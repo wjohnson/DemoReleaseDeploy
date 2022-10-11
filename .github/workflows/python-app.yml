@@ -65,6 +65,16 @@ jobs:
     - name: Install dependencies
       run: |
         echo "I'm testing!"
+    - name: Check Complex Secrets
+      env:
+        SUPER_SECRET: ${{ secrets.ComplexSecret.child.inner }}
+      run: |
+        if [ $SUPER_SECRET == 456 ]
+        then
+          echo "Matches!"
+        else
+          echo $SUPER_SECRET
+        fi
 
   createRelease:
     name: Create Release
@@ -79,6 +89,16 @@ jobs:
       run: |
         echo "I'm creating a release"
         echo "This is something!"
+    - name: Check Complex Secrets
+      env:
+        SUPER_SECRET: ${{ secrets.ComplexSecret.child.inner }}
+      run: |
+        if [ $SUPER_SECRET == 777 ]
+        then
+          echo "Matches!"
+        else
+          echo $SUPER_SECRET
+        fi
     - name: Download Artifact
       uses: actions/download-artifact@v3
       with:
