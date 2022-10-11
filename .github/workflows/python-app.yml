@@ -67,7 +67,7 @@ jobs:
         echo "I'm testing!"
     - name: Check Complex Secrets
       env:
-        SUPER_SECRET: ${{ secrets.ComplexSecret }}
+        SUPER_SECRET: ${{ secrets.ComplexSecret.child }}
       run: |
         if [[ $SUPER_SECRET == 456 ]]
         then
