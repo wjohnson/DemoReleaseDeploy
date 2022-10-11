@@ -67,14 +67,14 @@ jobs:
         echo "I'm testing!"
     - name: Check Complex Secrets
       env:
-        SUPER_SECRET: ${{ secrets.ComplexSecret.child.inner }}
+        SUPER_SECRET: ${{ secrets.ComplexSecret }}
       run: |
         if [[ $SUPER_SECRET == 456 ]]
         then
           echo "Matches to 456!"
         else
           echo "Did not match"
-          echo python3 -c "print('$SUPER_SECRET')"
+          python3 -c "print('$SUPER_SECRET')"
         fi
 
   createRelease:
