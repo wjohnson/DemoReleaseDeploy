@@ -73,7 +73,8 @@ jobs:
         then
           echo "Matches to 456!"
         else
-          echo $SUPER_SECRET
+          echo "Did not match"
+          echo python3 -c "print('$SUPER_SECRET')"
         fi
 
   createRelease:
