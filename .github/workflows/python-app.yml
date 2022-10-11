@@ -71,7 +71,7 @@ jobs:
       run: |
         if [ $SUPER_SECRET == 456 ]
         then
-          echo "Matches!"
+          echo "Matches to 456!"
         else
           echo $SUPER_SECRET
         fi
@@ -95,7 +95,7 @@ jobs:
       run: |
         if [ $SUPER_SECRET == 777 ]
         then
-          echo "Matches!"
+          echo "Matches to 777!"
         else
           echo $SUPER_SECRET
         fi
