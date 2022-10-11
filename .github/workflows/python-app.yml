@@ -30,7 +30,7 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Testing Exit Codes
-      run: python tests/flippable.py
+      run: python tests/flippable.py True
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -67,13 +67,14 @@ jobs:
         echo "I'm testing!"
     - name: Check Complex Secrets
       env:
-        SUPER_SECRET: ${{ secrets.ComplexSecret.child.inner }}
+        SUPER_SECRET: ${{ secrets.ComplexSecret.child }}
       run: |
-        if [ $SUPER_SECRET == 456 ]
+        if [[ $SUPER_SECRET == 456 ]]
         then
-          echo "Matches!"
+          echo "Matches to 456!"
         else
-          echo $SUPER_SECRET
+          echo "Did not match"
+          python3 -c 'import os;import json; print(json.loads(os.environ.get("SUPER_SECRET")))'
         fi
 
   createRelease:
@@ -93,9 +94,9 @@ jobs:
       env:
         SUPER_SECRET: ${{ secrets.ComplexSecret.child.inner }}
       run: |
-        if [ $SUPER_SECRET == 777 ]
+        if [[ $SUPER_SECRET == 777 ]]
         then
-          echo "Matches!"
+          echo "Matches to 777!"
         else
           echo $SUPER_SECRET
         fi
