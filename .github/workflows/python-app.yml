@@ -74,7 +74,7 @@ jobs:
           echo "Matches to 456!"
         else
           echo "Did not match"
-          python3 -c "print('$SUPER_SECRET')"
+          python3 -c 'import os; print(os.environ.get("SUPER_SECRET"))'
         fi
 
   createRelease:
